@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import flybits.com.flybits.DummyData.DummyData;
 import flybits.com.flybits.R;
 import flybits.com.flybits.adapter.ContactAdapter;
 import flybits.com.flybits.app.AppController;
@@ -27,15 +28,16 @@ public class ApplicationActivity extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.listcontact);
 
-        ArrayList<FBFriend> Friends = new ArrayList<FBFriend>();
-        for (int i = 0; i < 10; i++) {
-            FBFriend contact = new FBFriend();
-            contact.setProfileUrl("Test");
-            contact.setAmountTimeSpent(80);
-            Friends.add(contact);
-        }
+//        ArrayList<FBFriend> Friends = new ArrayList<FBFriend>();
+//        for (int i = 0; i < 10; i++) {
+//            FBFriend contact = new FBFriend();
+//            contact.setProfileUrl("Test");
+//            contact.setAmountTimeSpent(80);
+//            Friends.add(contact);
+//        }
 
-        ContactAdapter adapter = new ContactAdapter(this, Friends);
+
+        ContactAdapter adapter = new ContactAdapter(this, DummyData.getDummyData());
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

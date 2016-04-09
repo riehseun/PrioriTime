@@ -50,7 +50,7 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
         viewHolder.timeSpent.setText("Test");
 
         Picasso.with(getContext())
-                .load("https://scontent-yyz1-1.xx.fbcdn.net/hphotos-xaf1/t31.0-8/842984_10151496485382853_984212292_o.jpg")
+                .load(contact.getProfileUrl())
                 .into(viewHolder.avatar);
         return convertView;
     }
