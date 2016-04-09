@@ -47,7 +47,7 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
         }
 
 //        viewHolder.avatar.setText(user.name);
-        viewHolder.timeSpent.setText("Test");
+        viewHolder.timeSpent.setText(Integer.toString(contact.getAmountTimeSpent()));
 
         Picasso.with(getContext())
                 .load(contact.getProfileUrl())

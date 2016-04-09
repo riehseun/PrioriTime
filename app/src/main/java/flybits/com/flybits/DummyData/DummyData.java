@@ -23,12 +23,12 @@ public class DummyData {
         contacts.add(friend2);
 
         FBFriend friend3 = new FBFriend();
-        friend3.setProfileUrl("https://randomuser.me/api/portraits/med/men/81.jpg");
+        friend3.setProfileUrl("https://randomuser.me/api/portraits/med/women/81.jpg");
         friend3.setAmountTimeSpent(2);
         contacts.add(friend3);
 
         FBFriend friend4 = new FBFriend();
-        friend4.setProfileUrl("https://randomuser.me/api/portraits/med/men/82.jpg");
+        friend4.setProfileUrl("https://randomuser.me/api/portraits/med/women/82.jpg");
         friend4.setAmountTimeSpent(2);
         contacts.add(friend4);
 
@@ -38,7 +38,7 @@ public class DummyData {
         contacts.add(friend5);
 
         FBFriend friend6 = new FBFriend();
-        friend6.setProfileUrl("https://randomuser.me/api/portraits/med/men/84.jpg");
+        friend6.setProfileUrl("https://randomuser.me/api/portraits/med/women/84.jpg");
         friend6.setAmountTimeSpent(2);
         contacts.add(friend6);
 
