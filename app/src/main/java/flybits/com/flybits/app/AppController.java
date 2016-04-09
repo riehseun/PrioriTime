@@ -20,7 +20,7 @@ public class AppController extends Application {
         Flybits.include(this).initialize(builder);
     }
 
-    public void methodOne() {
-        Flybits.
-    }
+//    public void methodOne() {
+//        Flybits.
+//    }
 }
