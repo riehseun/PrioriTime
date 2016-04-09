@@ -3,36 +3,38 @@
     package="flybits.com.flybits">
 
     <!-- Optional: Needed for Account Authentication/Context Information -->
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
     <!-- Needed for Flybits SDK -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <meta-data
+        android:name="com.facebook.sdk.ApplicationId"
+        android:value="627220300742336" />
+
     <application
+        android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".app.AppController">
-        <meta-data android:name="com.flybits.apikey" android:value="C1C0F9DE-B8FC-40D7-A94E-6706B0B394C0" />
-        <activity android:name=".ApplicationActivity">
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.flybits.apikey"
+            android:value="C1C0F9DE-B8FC-40D7-A94E-6706B0B394C0" />
+
+        <activity android:name=".ApplicationActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".PersonalTags">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".EventTagsActivity"></activity>
     </application>
 
-    <meta-data
-        android:name="com.facebook.sdk.ApplicationId"
-        android:value="627220300742336" />
 </manifest>
