@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -28,6 +29,8 @@ import java.util.List;
 import flybits.com.flybits.DummyData.DummyData;
 import flybits.com.flybits.adapter.DummyAdapter;
 import flybits.com.flybits.adapter.SkillAdapter;
+import me.gujun.android.taggroup.TagGroup;
+
 import android.content.SharedPreferences;
 
 /**
@@ -85,12 +88,11 @@ public class ProfileActivity extends FragmentActivity implements SeekBar.OnSeekB
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        //Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        //Toast.makeText(this, "stop", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -98,7 +100,6 @@ public class ProfileActivity extends FragmentActivity implements SeekBar.OnSeekB
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int value = min + (progress * step);
         sharedPreferences.edit().putString(name, String.valueOf(value)).commit();
-        //Toast.makeText(this, String.valueOf(value), Toast.LENGTH_SHORT).show();
         score.setText(String.valueOf(value));
     }
 }

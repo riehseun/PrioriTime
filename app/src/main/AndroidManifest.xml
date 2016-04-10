@@ -11,9 +11,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <!-- Needed for Flybits SDK -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="flybits.com.flybits.permission.C2D_MESSAGE" />
@@ -49,12 +49,6 @@
         <service android:name="com.flybits.core.api.context.services.context.LocationCollectionService"/>
 
         <activity android:name=".ApplicationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".PersonalTagsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

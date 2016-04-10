@@ -36,13 +36,12 @@ import com.flybits.core.api.models.User;
 import com.flybits.core.api.models.Zone;
 import com.flybits.core.api.utils.filters.LoginOptions;
 import com.flybits.core.api.utils.filters.ZoneOptions;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import me.gujun.android.taggroup.TagGroup;
 
 public class ApplicationActivity extends FragmentActivity {
-    private EditText email;
-    private EditText password;
-    private Button button;
-    private String emailString;
-    private String passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +56,22 @@ public class ApplicationActivity extends FragmentActivity {
                 .setDebug(true)
                 .build();
         Flybits.include(this).initialize(builder);
-        button = (Button) findViewById(R.id.enter);
+
+        CircleImageView circle = (CircleImageView) findViewById(R.id.profile_image);
+        Picasso.with(this)
+                .load("https://randomuser.me/api/portraits/men/81.jpg")
+                .into(circle);
+
+        TagGroup mTagGroup = (TagGroup) findViewById(R.id.tag_group);
+        mTagGroup.setTags(new String[]{"Java", "Python", "Software Developer",
+                "JavaScript", "Flybit", "Database", "SQL", "Finance", "Banking", "Engineer",
+                "Adobe", "Android", "iOS", "Go", "Android Studio"});
+
+        Button button = (Button) findViewById(R.id.confirm);
         button.setOnClickListener(new Button.OnClickListener() {
             @Override
-            public void onClick(final View v) {
-                Intent intent = new Intent(getApplicationContext(), PersonalTagsActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EventActivity.class);
                 ApplicationActivity.this.startActivity(intent);
             }
         });

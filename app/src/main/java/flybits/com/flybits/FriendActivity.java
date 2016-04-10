@@ -1,6 +1,5 @@
 package flybits.com.flybits;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -28,17 +25,11 @@ import com.flybits.core.api.interfaces.IRequestLoggedIn;
 import com.flybits.core.api.models.User;
 import com.flybits.core.api.utils.filters.LoginOptions;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import flybits.com.flybits.DummyData.DummyData;
-import flybits.com.flybits.adapter.ContactAdapter;
 import flybits.com.flybits.adapter.DummyAdapter;
-import flybits.com.flybits.app.AppController;
 
 /**
  * Created by user on 2016-04-09.
@@ -189,5 +180,4 @@ public class FriendActivity extends AppCompatActivity{
             }
         });
     }
-
 }

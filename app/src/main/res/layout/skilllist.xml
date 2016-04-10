@@ -6,6 +6,7 @@
     <me.gujun.android.taggroup.TagGroup
         android:layout_marginTop="3dp"
         android:id="@+id/tag_group"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="20dp"
         style="@style/TagGroup" />
-
 </LinearLayout>
