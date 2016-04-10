@@ -9,8 +9,6 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import me.gujun.android.taggroup.TagGroup;
-
 public class EventTagsActivity extends AppCompatActivity {
 
     @Override

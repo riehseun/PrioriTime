@@ -12,48 +12,50 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import flybits.com.flybits.DummyData.DummyData;
 import flybits.com.flybits.R;
 import flybits.com.flybits.model.FBFriend;
+import me.gujun.android.taggroup.TagGroup;
 
 /**
- * Created by larrychong on 16-04-09.
+ * Created by user on 2016-04-10.
  */
-public class ContactAdapter extends ArrayAdapter<String> {
-    // View lookup cache
+public class DummyAdapter extends ArrayAdapter<FBFriend> {
     private static class ViewHolder {
         ImageView avatar;
-        TextView timeSpent;
+        TextView name;
+        TagGroup mTagGroup;
     }
 
-    public ContactAdapter(Context context, ArrayList<String> userId) {
-        super(context, R.layout.item_contact, userId);
+    public DummyAdapter(Context context, ArrayList<FBFriend> friend) {
+        super(context, R.layout.item_contact, friend);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        String userId = getItem(position);
+        FBFriend contact = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
         if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_contact, parent, false);
-            //viewHolder.avatar = (ImageView) convertView.findViewById(R.id.profileimage);
-            //viewHolder.timeSpent = (TextView) convertView.findViewById(R.id.timespent);
+            viewHolder.avatar = (ImageView) convertView.findViewById(R.id.profileimage);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.mTagGroup = (TagGroup) convertView.findViewById(R.id.tag_group);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-//        viewHolder.avatar.setText(user.name);
-        viewHolder.timeSpent.setText(userId);
-
-        /*
+        //viewHolder.avatar.setText(user.name);
+        viewHolder.name.setText(contact.getProfileName());
         Picasso.with(getContext())
                 .load(contact.getProfileUrl())
                 .into(viewHolder.avatar);
-                */
+
+        viewHolder.mTagGroup.setTags(contact.getSkills());
         return convertView;
     }
 }

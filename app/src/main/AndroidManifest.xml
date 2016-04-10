@@ -7,8 +7,17 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- Needed for Flybits SDK -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="flybits.com.flybits.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +26,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".app.AppController">
-        <meta-data android:name="com.flybits.apikey" android:value="C1C0F9DE-B8FC-40D7-A94E-6706B0B394C0" />
+        <meta-data
+            android:name="com.flybits.apikey"
+            android:value="C1C0F9DE-B8FC-40D7-A94E-6706B0B394C0" />
+        <service android:name="com.flybits.core.api.services.PushService" />
+
+        <!-- Optional: Receiver which you can override with your own Receiver -->
+
+        <receiver
+            android:name="com.flybits.core.api.receivers.BootReceiverForContext"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.flybits.core.api.receivers.rules.RulesAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.RulesRetrievalService"/>
+        <receiver android:name="com.flybits.core.api.receivers.context.ContextCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.ContextUploadingService"/>
+        <receiver android:name="com.flybits.core.api.receivers.context.LocationAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.context.LocationCollectionService"/>
+
         <activity android:name=".ApplicationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,11 +84,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
     </application>
 
     <!--

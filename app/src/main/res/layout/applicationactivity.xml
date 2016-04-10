@@ -6,18 +6,12 @@
     android:orientation="vertical"
     tools:context=".ApplicationActivity">
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Enter"/>
+        android:layout_marginTop="20dip"
+        android:background="@color/btn_login_bg"
+        android:text="Enter"
+        android:textColor="@color/btn_login" />
 </LinearLayout>

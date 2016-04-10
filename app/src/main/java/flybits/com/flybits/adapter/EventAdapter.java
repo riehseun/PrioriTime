@@ -5,32 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.flybits.core.api.models.Zone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import flybits.com.flybits.R;
-import flybits.com.flybits.model.Event;
-import flybits.com.flybits.model.FBFriend;
 
 /**
  * Created by user on 2016-04-09.
  */
-public class EventAdapter extends ArrayAdapter<Event> {
+public class EventAdapter extends ArrayAdapter<Zone> {
     private static class ViewHolder {
         TextView name;
     }
 
-    public EventAdapter(Context context, ArrayList<Event> event) {
-        super(context, R.layout.eventlist, event);
+    public EventAdapter(Context context, List<Zone> zones) {
+        super(context, R.layout.eventlist, zones);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Event event = getItem(position);
+        Zone zone = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -38,13 +35,12 @@ public class EventAdapter extends ArrayAdapter<Event> {
             convertView = inflater.inflate(R.layout.eventlist, parent, false);
             viewHolder.name = (TextView) convertView.findViewById(R.id.event);
             convertView.setTag(viewHolder);
-            viewHolder.name.setText("Shoot");
         }
         else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.name.setText(event.getName());
+        viewHolder.name.setText(zone.getName());
 
         return convertView;
     }

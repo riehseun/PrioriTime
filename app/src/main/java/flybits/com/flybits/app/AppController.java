@@ -12,39 +12,54 @@ import com.flybits.core.api.models.Zone;
 import com.flybits.core.api.utils.filters.ZoneOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+import android.app.Application;
+import android.text.TextUtils;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 /**
  * Created by user on 2016-04-08.
  */
 public class AppController extends Application {
+    public static final String TAG = AppController.class.getSimpleName();
 
     private static Context context;
+    private static ArrayList<Zone> zones;
+
+    private RequestQueue mRequestQueue;
+    private ImageLoader mImageLoader;
+    private static AppController mInstance;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         FlybitsOptions builder = new FlybitsOptions.Builder(this)
                 //Additional Options Can Be Added Here
                 .build();
         AppController.context = getApplicationContext();
         //Initialize the FlybitsOptions
         Flybits.include(this).initialize(builder);
+
+        mInstance = this;
     }
 
-    public void createZones() {
-        Zone zone = new Zone();
-    }
+    public static List<Zone> getZone() {
+        final List<Zone> zones = new ArrayList<>();
 
-    public static void getZones() {
         ZoneOptions options  = new ZoneOptions.Builder()
                 .build();
 
         Flybits.include(context).getZones(options, new IRequestPaginationCallback<ArrayList<Zone>>() {
             @Override
             public void onSuccess(ArrayList<Zone> data, Pagination pagination) {
-                //Some Logic on UI Thread
-                System.out.println(data);
+                System.out.println("DATA size: " + data.size());
+                zones.addAll(data);
             }
 
             @Override
@@ -62,5 +77,35 @@ public class AppController extends Application {
                 //Clean up function on UI Thread
             }
         });
+
+        return zones;
+    }
+
+    public static synchronized AppController getInstance() {
+        return mInstance;
+    }
+
+    public RequestQueue getRequestQueue() {
+        if (mRequestQueue == null) {
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
+        return mRequestQueue;
+    }
+
+    public <T> void addToRequestQueue(Request<T> req, String tag) {
+        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        getRequestQueue().add(req);
+    }
+
+    public <T> void addToRequestQueue(Request<T> req) {
+        req.setTag(TAG);
+        getRequestQueue().add(req);
+    }
+
+    public void cancelPendingRequests(Object tag) {
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(tag);
+        }
     }
 }

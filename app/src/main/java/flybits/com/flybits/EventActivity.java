@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import flybits.com.flybits.DummyData.DummyData;
-import flybits.com.flybits.DummyData.DummyData2;
-import flybits.com.flybits.adapter.ContactAdapter;
+import com.flybits.core.api.Flybits;
+import com.flybits.core.api.interfaces.IRequestPaginationCallback;
+import com.flybits.core.api.models.Pagination;
+import com.flybits.core.api.models.Zone;
+import com.flybits.core.api.utils.filters.ZoneOptions;
+
+import java.util.ArrayList;
+
 import flybits.com.flybits.adapter.EventAdapter;
-import flybits.com.flybits.app.AppController;
 
 /**
  * Created by user on 2016-04-09.
@@ -26,22 +30,48 @@ public class EventActivity extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.listevent);
 
-        EventAdapter adapter = new EventAdapter(this, DummyData2.getDummyData());
-        listview.setAdapter(adapter);
+        getZone();
+    }
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    public void getZone() {
+        ZoneOptions options  = new ZoneOptions.Builder()
+                .build();
+
+        Flybits.include(this).getZones(options, new IRequestPaginationCallback<ArrayList<Zone>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), EventTagsActivity.class);
-                /*
-                Bundle b = new Bundle();
-                b.putString("photo_url", DummyData.getDummyData().get(position).getProfileUrl());
-                b.putString("name", DummyData.getDummyData().get(position).getProfileName());
-                b.putString("time", String.valueOf(DummyData.getDummyData().get(position).getAmountTimeSpent()));
-                intent.putExtras(b);
-                */
-                EventActivity.this.startActivity(intent);
+            public void onSuccess(final ArrayList<Zone> data, Pagination pagination) {
+                EventAdapter adapter = new EventAdapter(getApplicationContext(), data);
+                listview.setAdapter(adapter);
+
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(view.getContext(), FriendActivity.class);
+
+                        Bundle b = new Bundle();
+                        b.putString("zone_id", data.get(position).id);
+                        intent.putExtras(b);
+
+                        EventActivity.this.startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(String reason) {
+
+            }
+
+            @Override
+            public void onException(Exception exception) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
             }
         });
     }
+
 }
