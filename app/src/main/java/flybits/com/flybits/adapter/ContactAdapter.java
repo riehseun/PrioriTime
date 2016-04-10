@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import flybits.com.flybits.R;
 import flybits.com.flybits.model.FBFriend;
+import me.gujun.android.taggroup.TagGroup;
 
 /**
  * Created by larrychong on 16-04-09.
@@ -22,8 +23,8 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
     // View lookup cache
     private static class ViewHolder {
         ImageView avatar;
-        TextView timeSpent;
-
+        TextView name;
+        TagGroup mTagGroup;
     }
 
     public ContactAdapter(Context context, ArrayList<FBFriend> friend) {
@@ -41,18 +42,20 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_contact, parent, false);
             viewHolder.avatar = (ImageView) convertView.findViewById(R.id.profileimage);
-//            viewHolder.timeSpent = (TextView) convertView.findViewById(R.id.timespent);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.mTagGroup = (TagGroup) convertView.findViewById(R.id.tag_group);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
 //        viewHolder.avatar.setText(user.name);
-//        viewHolder.timeSpent.setText(Integer.toString(contact.getAmountTimeSpent()));
-
+        viewHolder.name.setText(contact.getProfileName());
         Picasso.with(getContext())
                 .load(contact.getProfileUrl())
                 .into(viewHolder.avatar);
+
+        viewHolder.mTagGroup.setTags(contact.getSkills());
         return convertView;
     }
 }

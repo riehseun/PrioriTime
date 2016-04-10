@@ -7,6 +7,15 @@ public class FBFriend {
     private String profileUrl;
     private String profileName;
     private int amountTimeSpent;
+    private String[] skills;
+
+    public String[] getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String[] skills) {
+        this.skills = skills;
+    }
 
     public String getProfileUrl() {
         return profileUrl;

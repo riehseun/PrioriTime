@@ -6,23 +6,23 @@
     android:orientation="vertical"
     tools:context=".FriendActivity">
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center">-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="want"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="need"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="want"/>-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="need"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <ListView
         android:layout_marginTop="10dp"
