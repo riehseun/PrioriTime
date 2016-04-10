@@ -1,20 +1,22 @@
 package flybits.com.flybits;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.gujun.android.taggroup.TagGroup;
 
-public class PersonalTags extends AppCompatActivity {
+public class PersonalTagsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_tags);
+        setContentView(R.layout.personaltagsactivity);
 
         CircleImageView circle = (CircleImageView) findViewById(R.id.profile_image);
         Picasso.with(this)
@@ -26,5 +28,13 @@ public class PersonalTags extends AppCompatActivity {
                 "JavaScript", "Flybit", "Database", "SQL", "Finance", "Banking", "Engineer",
                 "Adobe", "Android", "iOS", "Go", "Android Studio"});
 
+        Button button = (Button) findViewById(R.id.confirm);
+        button.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EventActivity.class);
+                PersonalTagsActivity.this.startActivity(intent);
+            }
+        });
     }
 }

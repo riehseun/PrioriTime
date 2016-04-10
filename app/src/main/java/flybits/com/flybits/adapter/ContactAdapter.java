@@ -23,6 +23,7 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
     private static class ViewHolder {
         ImageView avatar;
         TextView timeSpent;
+
     }
 
     public ContactAdapter(Context context, ArrayList<FBFriend> friend) {
@@ -40,14 +41,14 @@ public class ContactAdapter extends ArrayAdapter<FBFriend> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_contact, parent, false);
             viewHolder.avatar = (ImageView) convertView.findViewById(R.id.profileimage);
-            viewHolder.timeSpent = (TextView) convertView.findViewById(R.id.timespent);
+//            viewHolder.timeSpent = (TextView) convertView.findViewById(R.id.timespent);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
 //        viewHolder.avatar.setText(user.name);
-        viewHolder.timeSpent.setText(Integer.toString(contact.getAmountTimeSpent()));
+//        viewHolder.timeSpent.setText(Integer.toString(contact.getAmountTimeSpent()));
 
         Picasso.with(getContext())
                 .load(contact.getProfileUrl())

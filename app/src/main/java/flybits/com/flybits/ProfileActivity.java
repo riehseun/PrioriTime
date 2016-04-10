@@ -1,20 +1,23 @@
 package flybits.com.flybits;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 /**
  * Created by user on 2016-04-09.
  */
-public class ProfileActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class ProfileActivity extends FragmentActivity implements SeekBar.OnSeekBarChangeListener {
 
     private SeekBar bar;
     private ImageView imageUrl;
+    private TextView nameView;
+    private TextView timeView;
     private int max = 100;
     private int min = 0;
     private int step = 1;
@@ -26,10 +29,15 @@ public class ProfileActivity extends Activity implements SeekBar.OnSeekBarChange
 
         Intent intent = getIntent();
         String photoUrl = intent.getStringExtra("photo_url");
-        System.out.println("photoUrl: " + photoUrl);
+        String name = intent.getStringExtra("name");
+        String time = intent.getStringExtra("time");
 
         imageUrl = (ImageView) findViewById(R.id.header_imageview);
+        nameView = (TextView) findViewById(R.id.name);
+        timeView = (TextView)findViewById(R.id.time);
         Picasso.with(this).load(photoUrl).into(imageUrl);
+        nameView.setText(name);
+        timeView.setText(time);
 
         bar = (SeekBar)findViewById(R.id.seekBar1);
         bar.setOnSeekBarChangeListener(this);

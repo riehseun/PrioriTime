@@ -26,8 +26,7 @@ dependencies {
     compile 'com.flybits.fbcore:library:2.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
-//    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.github.medyo:fancybuttons:1.5@aar'
     compile 'me.gujun.android.taggroup:library:1.4@aar'
-
 }
